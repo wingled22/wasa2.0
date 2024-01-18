@@ -43,15 +43,15 @@ if (isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
     echo "No file uploaded.";
 }
 
-    // $sql = "INSERT INTO certification 
-    // (empID, certName, dateStart, dateEnd, qualification, venue, image)
-    // VALUES 
-    // ('$empID', '$certName', '$dateStart', '$dateEnd', '$qualification', '$venue', '$image')";    
-    // $res  = $conn->query($sql);
-    // if($res)
-    //     header("location: employee-profile.php?id=$empID");
-    // else{
-    //     echo "error happened"; 
-    //     echo "Error: " . $sql . "<br>" . $conn->error;  
-    // }
+    $sql = "INSERT INTO certification 
+    (empID, certName, dateStart, dateEnd, qualification, venue, image)
+    VALUES 
+    ('$empID', '$certName', '$dateStart', '$dateEnd', '$qualification', '$venue', '$image')";    
+    $res  = $conn->query($sql);
+    if($res)
+        header("location: employee-profile.php?id=$empID");
+    else{
+        echo "error happened"; 
+        echo "Error: " . $sql . "<br>" . $conn->error;  
+    }
 ?>
