@@ -195,12 +195,15 @@
                           <td>
                             <a href="employee-certification-update-form.php?empid=<?php echo $_GET['id']?>&id=<?php echo $row->id?>" class="btn btn-success">Update</a>
                             <a href="employee-certification-delete.php?empid=<?php echo $_GET['id']?>&id=<?php echo $row->id?>" class="btn btn-danger">Delete</a>
+                            <a href="" class="btn btn-info">Certificate</a>
                           </td>
                         </tr>
                     
                       <?php
                           }    
                       ?>
+                     
+
                       </tbody>
                     </table>
 
@@ -273,7 +276,7 @@
 		</form>
 		<br />
 
-		<?php
+<?php
 		
 			
 			$query = mysqli_query($conn, "SELECT * FROM `image`") or die(mysqli_error());

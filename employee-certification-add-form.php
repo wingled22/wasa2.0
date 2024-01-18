@@ -33,7 +33,7 @@
                   <h3 class="card-title"> Certification </h3>
                 </div>
 
-                <form action="employee-certification-add.php" method="POST">
+                <form action="employee-certification-add.php" method="POST" enctype="multipart/form-data">
                   <div class="card-body" style="">
 
                     <input type="text" style="display:none" name="empID" value="<?php echo $_GET['id']?>" required >
@@ -88,9 +88,17 @@
                             <input type="text" class="form-control" id="" placeholder="Venue" name="venue" required>
                         </div>
                       </div>
-                    
+                  
                     </div>
-
+                    <div class="row">
+                      <div class="col-12">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Upload</label>
+                            <input type="file" name="image" class="form-control" required=""/>
+			                    	<!-- <button class="btn btn-primary" name="upload"><span class="glyphicon glyphicon-upload"></span> Upload</button> -->
+                        </div>
+                      </div>
+                    </div>
                   <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Submit</button>
                     <a href="employee-profile.php?id=<?php echo $_GET['id'];?>" class="btn btn-danger">Back</a>
