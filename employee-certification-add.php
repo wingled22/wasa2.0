@@ -20,14 +20,18 @@ if (isset($_FILES['image']) && !empty($_FILES['image']['name'])) {
     $target_dir = __DIR__.'/upload/'; 
     $target_file = $target_dir . basename($_FILES["image"]["name"]);
 
-    $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+   
+    $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
 
-    $extensions_arr = array("jpg", "jpeg", "png", "gif");
 
-    echo __DIR__;
+    
+   
+    $extensions_arr = array("jpg","jpeg","png","gif");
 
-    if (in_array($imageFileType, $extensions_arr)) {
-        if (move_uploaded_file($_FILES['image']['tmp_name'], $target_dir.$image)) {
+    
+    if(in_array($imageFileType,$extensions_arr) ){
+        
+        if(move_uploaded_file($_FILES['image']['tmp_name'],$target_dir.$image)){
             echo "Image uploaded successfully.";
 
             // Now you can continue with the rest of your code
