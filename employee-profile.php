@@ -195,7 +195,8 @@
                           <td>
                             <a href="employee-certification-update-form.php?empid=<?php echo $_GET['id']?>&id=<?php echo $row->id?>" class="btn btn-success">Update</a>
                             <a href="employee-certification-delete.php?empid=<?php echo $_GET['id']?>&id=<?php echo $row->id?>" class="btn btn-danger">Delete</a>
-                            <a href="" class="btn btn-info">Certificate</a>
+                            <!-- <a href="" class="btn btn-info">Certificate</a> -->
+                            <img src="upload/<?php echo $row->image; ?>" height="100" width="100" alt=""/>
                           </td>
                         </tr>
                     
