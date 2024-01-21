@@ -225,9 +225,52 @@ require "dbconnection.php";
                     </div>
 
                     <!-- Button to trigger the modal -->
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageModal">
+                    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#imageModal">
                         Open Image Modal
-                    </button>
+                    </button> -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>Absents</h5>
+                            <hr>
+                            <a href="employee-absent-add-form.php?id=<?php echo $empID;?>&idnum=<?php echo $idNum;?>" class="btn btn-primary">Add Absent</a>
+                            <br>
+                            <table class="table table-striped table-valign-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Date Start</th>
+                                        <th>Date End</th>
+                                        <th>Reason</th>
+                                        <th>Status</th>
+                                        <th>More</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        require "dbconnection.php";
+                                        $sql = "SELECT * from absent where empID = $empID";
+                                        $res = $conn->query($sql);
+                                        if (!$res) {
+                                            echo "no data on the table";
+                                        }
+                                        while ($row = mysqli_fetch_object($res)) {
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $row->datestart; ?></td>
+                                            <td><?php echo $row->dateEnd; ?></td>
+                                            <td><?php echo $row->reason; ?></td>
+                                            <td><?php echo $row->status; ?></td>
+                                            <td>
+                                                <a href="employee-absent-update-form.php?empid=<?php echo $_GET['id']?>&id=<?php echo $row->id?>" class="btn btn-success">Update</a>
+                                                <a href="employee-absent-delete.php?empid=<?php echo $_GET['id']?>&id=<?php echo $row->id?>" class="btn btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
 
                     
                 </div>
