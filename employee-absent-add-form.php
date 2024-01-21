@@ -114,7 +114,7 @@ include_once "~/../php-includes/header.php";
 
         </div><!-- /.container-fluid -->
     </div>
-    <!-- /.content -->
+ 
 
 </div>
 
@@ -168,8 +168,8 @@ include_once "~/../php-includes/header.php";
         document.getElementById('daysDifference').value = daysDiff;
     }
 
-    // Call showTimeOption() initially to set the initial state of the time option container
+   
     showTimeOption();
 </script>
 
-<!-- Include any other necessary scripts or libraries here -->
+
