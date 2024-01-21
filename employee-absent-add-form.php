@@ -69,8 +69,8 @@ include_once "~/../php-includes/header.php";
                                             <label for="timeOption">Select time option:</label>
                                             <select class="form-control" id="timeOption" name="timeOption">
                                                 <!-- <option value=""></option> -->
-                                                <option value="halfDay">Half Day</option>
                                                 <option value="fullDay">Full Day</option>
+                                                <option value="halfDay">Half Day</option>
                                             </select>
                                         </div>
                                     </div>
@@ -153,7 +153,7 @@ include_once "~/../php-includes/header.php";
         var daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
         // Get the selected time option
-        var timeOption = document.getElementById('timeOption').value;
+        var timeOption = document.getElementById('timeOption').value;   
 
         // Adjust the days difference based on the time option if the selected date is the current date
         if (timeOption === 'halfDay' && selectedDate.toDateString() === today.toDateString()) {
@@ -167,6 +167,7 @@ include_once "~/../php-includes/header.php";
         document.getElementById('selectedDate').value = selectedDate.toDateString();
         document.getElementById('daysDifference').value = daysDiff;
     }
+   
 
    
     showTimeOption();

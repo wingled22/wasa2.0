@@ -240,6 +240,8 @@ require "dbconnection.php";
                                         <th>Date Start</th>
                                         <th>Date End</th>
                                         <th>Reason</th>
+                                        <th>halfDay / fullDay</th>
+                                        <th>Days</th>
                                         <th>Status</th>
                                         <th>More</th>
                                     </tr>
@@ -258,9 +260,11 @@ require "dbconnection.php";
                                             <td><?php echo $row->datestart; ?></td>
                                             <td><?php echo $row->dateEnd; ?></td>
                                             <td><?php echo $row->reason; ?></td>
+                                            <td><?php echo $row->daystatus; ?></td>
+                                            <td><?php echo $row->numday; ?></td>
                                             <td><?php echo $row->status; ?></td>
                                             <td>
-                                                <a href="employee-absent-update-form.php?empid=<?php echo $_GET['id']?>&id=<?php echo $row->id?>" class="btn btn-success">Update</a>
+                                                <!-- <a href="employee-absent-update-form.php?empid=<?php// echo $_GET['id']?>&id=<?php// echo $row->id?>" class="btn btn-success">Update</a> -->
                                                 <a href="employee-absent-delete.php?empid=<?php echo $_GET['id']?>&id=<?php echo $row->id?>" class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
