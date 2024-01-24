@@ -1,4 +1,7 @@
 <?php
+    // Report all errors
+    error_reporting(E_ALL);
+
     if($_POST == null){
         header("location: employees.php");
     }
@@ -6,7 +9,8 @@
     require "dbconnection.php";
 
 	echo "<pre>";
-	print_r($_FILES['my_image']);
+	// print_r($_FILES['my_image']);
+    var_dump($_POST);
 	echo "</pre>";
 
 
@@ -15,6 +19,7 @@
 	$tmp_name = $_FILES['my_image']['tmp_name'];
 	$error = $_FILES['my_image']['error'];
     $empstatus = $_POST["empstatus"];
+    $salary = $_POST["salary"];
     $firstname = $_POST["firstname"];
     $middlename = $_POST["middlename"];
     $lastname = $_POST["lastname"];
@@ -42,7 +47,10 @@
 if ($error === 0) {
     if ($img_size > 925000) {
         $em = "Sorry, your file is too large.";
+        echo error_get_last();
+
         header("Location: employee-add-form.php?error=$em");
+
     }
     else {
         $img_ex = pathinfo($img_name, PATHINFO_EXTENSION);
@@ -56,25 +64,36 @@ if ($error === 0) {
             move_uploaded_file($tmp_name, $img_upload_path);
                         
             $sql = "INSERT INTO employee 
-            (image_url ,empstatus ,firstname ,middlename ,lastname ,age ,gender ,civilstat ,citizenship ,religion ,contact ,email ,address ,birthplace ,birthdate ,fathername ,mothername ,idnum ,hireddate ,department ,emername ,emercontact ,emerrelation ,emeraddress) 
+            (image_url ,empstatus , salary ,firstname ,middlename ,lastname ,age ,gender ,civilstat ,citizenship ,religion ,contact ,email ,address ,birthplace ,birthdate ,fathername ,mothername ,idnum ,hireddate ,department ,emername ,emercontact ,emerrelation ,emeraddress) 
             VALUES 
-            ('$new_img_name','$empstatus','$firstname','$middlename','$lastname','$age','$gender','$civilstat','$citizenship','$religion','$contact','$email','$address','$birthplace','$birthdate','$fathername','$mothername','$idnum','$hireddate','$department','$emername','$emercontact','$emerrelation','$emeraddress') ";
+            ('$new_img_name','$empstatus', '$salary','$firstname','$middlename','$lastname','$age','$gender','$civilstat','$citizenship','$religion','$contact','$email','$address','$birthplace','$birthdate','$fathername','$mothername','$idnum','$hireddate','$department','$emername','$emercontact','$emerrelation','$emeraddress') ";
             
             $res  = $conn->query($sql);
+
+            print_r(error_get_last());
+
+            
             if($res)
                 header("location: employees.php");
+
             }
             else {
                 $em = "You can't upload files of this type";
+                echo error_get_last();
+
                 header("Location: employee-add-form.php?error=$em");
+
             }
 		}
 	}
     else {
 		$em = "unknown error occurred!";
+        echo error_get_last();
+
 		header("Location: employee-add-form.php?error=$em");
 	}
 
+    echo error_get_last();
 
         
                   
