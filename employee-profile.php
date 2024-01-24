@@ -281,11 +281,7 @@ require "dbconnection.php";
                             <h5>Salary Adjustments</h5>
                             <hr>
                             <a href="employee-salary-adjustment-add-form.php?id=<?php echo $empID;?>" class="btn btn-primary">Add Salary Adjustment</a>
-                            <!-- 
-                                SELECT adj.id, adj.adjustmentId, str.category, str.name, str.salary, adj.empId FROM salaryadjustment as adj
-                                inner join salarystructure as str on adj.adjustmentId = str.id
-                                where adj.empId = 23;
-                             -->
+                           
                              <br>
                             <table class="table table-striped table-valign-middle">
                                 <thead>
@@ -300,8 +296,8 @@ require "dbconnection.php";
                                     <?php
                                         require "dbconnection.php";
                                         $sql = "SELECT adj.id, adj.adjustmentId, str.category, str.name, str.salary, adj.empId FROM salaryadjustment as adj
-                                        inner join salarystructure as str on adj.adjustmentId = str.id
-                                        where adj.empId = $empID;";
+                                                inner join salarystructure as str on adj.adjustmentId = str.id
+                                                where adj.empId = $empID;";
                                         $res = $conn->query($sql);
                                         if (!$res) {
                                             echo "no data on the table";
