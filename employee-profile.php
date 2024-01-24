@@ -281,6 +281,47 @@ require "dbconnection.php";
                             <h5>Salary Adjustments</h5>
                             <hr>
                             <a href="employee-salary-adjustment-add-form.php?id=<?php echo $empID;?>" class="btn btn-primary">Add Salary Adjustment</a>
+                            <!-- 
+                                SELECT adj.id, adj.adjustmentId, str.category, str.name, str.salary, adj.empId FROM salaryadjustment as adj
+                                inner join salarystructure as str on adj.adjustmentId = str.id
+                                where adj.empId = 23;
+                             -->
+                             <br>
+                            <table class="table table-striped table-valign-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Category</th>
+                                        <th>Name</th>
+                                        <th>More</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        require "dbconnection.php";
+                                        $sql = "SELECT adj.id, adj.adjustmentId, str.category, str.name, str.salary, adj.empId FROM salaryadjustment as adj
+                                        inner join salarystructure as str on adj.adjustmentId = str.id
+                                        where adj.empId = $empID;";
+                                        $res = $conn->query($sql);
+                                        if (!$res) {
+                                            echo "no data on the table";
+                                        }
+                                        while ($row = mysqli_fetch_object($res)) {
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $row->id; ?></td>
+                                            <td><?php echo $row->category; ?></td>
+                                            <td><?php echo $row->name; ?></td>
+                                            <td>
+                                                <a href="employee-salary-adjustment-delete.php?id=<?php echo $row->id?>" class="btn btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    ?>
+
+                                </tbody>
+                            </table>
                         </div>
                     </div>
 
