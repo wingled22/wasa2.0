@@ -276,6 +276,15 @@ require "dbconnection.php";
                         </div>
                     </div>
 
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>Salary Adjustments</h5>
+                            <hr>
+                            <a href="employee-salary-adjustment-add-form.php?id=<?php echo $empID;?>" class="btn btn-primary">Add Salary Adjustment</a>
+                        </div>
+                    </div>
+
+
                     
                 </div>
             </div>
