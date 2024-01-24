@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 20, 2023 at 11:51 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Generation Time: Jan 24, 2024 at 05:28 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -20,6 +20,31 @@ SET time_zone = "+00:00";
 --
 -- Database: `wasa`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `absent`
+--
+
+CREATE TABLE `absent` (
+  `id` int(11) NOT NULL,
+  `empID` int(11) NOT NULL,
+  `datestart` varchar(500) NOT NULL,
+  `dateEnd` varchar(500) NOT NULL,
+  `daystatus` varchar(500) NOT NULL,
+  `numday` varchar(11) NOT NULL,
+  `reason` varchar(500) NOT NULL,
+  `status` varchar(500) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `absent`
+--
+
+INSERT INTO `absent` (`id`, `empID`, `datestart`, `dateEnd`, `daystatus`, `numday`, `reason`, `status`) VALUES
+(9, 17, 'Mon Jan 22 2024', 'Mon Jan 22 2024', 'halfDay', '0.5', 'asdasdasd', 'With Pay'),
+(10, 17, 'Mon Jan 22 2024', 'Wed Jan 24 2024', 'fullDay', '3', 'asdasd', 'With Pay');
 
 -- --------------------------------------------------------
 
@@ -77,16 +102,18 @@ CREATE TABLE `certification` (
   `dateStart` varchar(255) DEFAULT NULL,
   `dateEnd` varchar(255) DEFAULT NULL,
   `qualification` varchar(500) DEFAULT NULL,
-  `venue` varchar(500) DEFAULT NULL
+  `venue` varchar(500) DEFAULT NULL,
+  `image` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `certification`
 --
 
-INSERT INTO `certification` (`id`, `empID`, `certName`, `dateStart`, `dateEnd`, `qualification`, `venue`) VALUES
-(5, 3, 'wasdf', '2023-01-01', '2023-02-04', ' saldkf ', 'venue 1 update1'),
-(6, 17, 'Microsoft', '2023-07-13', '2023-07-12', 'Information Technology ', 'CEBU');
+INSERT INTO `certification` (`id`, `empID`, `certName`, `dateStart`, `dateEnd`, `qualification`, `venue`, `image`) VALUES
+(5, 3, 'wasdf', '2023-01-01', '2023-02-04', ' saldkf ', 'venue 1 update1', ''),
+(6, 17, 'Microsoft', '2023-07-13', '2023-07-12', 'Information Technology ', 'CEBU', ''),
+(7, 17, 'asdasd', '2003-02-12', '2005-02-12', 'asdsad', 'asdasd', 'Screenshot 2024-01-18 215348.png');
 
 -- --------------------------------------------------------
 
@@ -237,6 +264,12 @@ INSERT INTO `salarystructure` (`id`, `category`, `name`, `residency`, `license`,
 --
 
 --
+-- Indexes for table `absent`
+--
+ALTER TABLE `absent`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `admin`
 --
 ALTER TABLE `admin`
@@ -289,6 +322,12 @@ ALTER TABLE `salarystructure`
 --
 
 --
+-- AUTO_INCREMENT for table `absent`
+--
+ALTER TABLE `absent`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
@@ -304,7 +343,7 @@ ALTER TABLE `applicationinfo`
 -- AUTO_INCREMENT for table `certification`
 --
 ALTER TABLE `certification`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `educattain`
