@@ -265,7 +265,7 @@ require "dbconnection.php";
                                             <td><?php echo $row->numday; ?></td>
                                             <td><?php echo $row->status; ?></td>
                                             <td>
-                                                <a href="employee-absent-update-form.php?empid=<?php echo $_GET['id']?>&id=<?php echo $row->id?>" class="btn btn-success">Update</a>
+                                                <!-- <a href="employee-absent-update-form.php?empid=<?php echo $_GET['id']?>&id=<?php echo $row->id?>" class="btn btn-success">Update</a> -->
                                                 <a href="employee-absent-delete.php?empid=<?php echo $_GET['id']?>&id=<?php echo $row->id?>" class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
