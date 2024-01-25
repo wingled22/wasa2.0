@@ -4,6 +4,7 @@
     // }
     
     include_once "~/../php-includes/header.php";
+    error_reporting(0);
 ?>
 
 

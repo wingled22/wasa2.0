@@ -43,7 +43,7 @@
 			
                 <!-- /.card-header -->
                 <!-- form start -->
-                <form action="employee-update.php" method="POST">
+                <form action="employee-update.php" method="POST" enctype="multipart/form-data">
                   <div class="card-body" style="height: 85vh; overflow: scroll;">
 
                     <input type="text" style="display:none" name="id" value="<?php echo $row['id']?>" required >
@@ -252,6 +252,20 @@
                         </div>
                       </div>
                     </div>
+                    <legend>Image</legend>
+                        <div class="row">
+                          <div class="col-6">
+                            <input type="hidden" name="old_image_url" value="<?php echo $row['image_url']; ?>">
+                            <input type="text" class="form-control" id="image_url_display" placeholder="Image URL" name="image_url" value="<?php echo $row['image_url']; ?>" readonly>
+                            <input type="file" name="my_image" id="my_image">
+                          </div>
+                        </div>
+
+                        <script>
+                          // Display the current image URL in the text input
+                          document.getElementById('image_url_display').value = "<?php echo $row['image_url']; ?>";
+                        </script>
+
 
 
 

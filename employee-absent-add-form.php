@@ -60,7 +60,7 @@ include_once "~/../php-includes/header.php";
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="form-group">
-                                            <label for="dateInput">Select a date:</label>
+                                            <label for="dateInput">Date Applied:</label>
                                             <input type="date" class="form-control" id="dateInput" oninput="showTimeOption()">
                                         </div>
                                     </div>
@@ -79,14 +79,14 @@ include_once "~/../php-includes/header.php";
                                 <div class="row">
                                     <div class="col-6">
                                         <div class="result">
-                                            <label for="currentDate">Current Date:</label>
-                                            <input type="text" name="dateStart" class="form-control" id="currentDate" readonly>
+                                            <label for="currentDate">Date From:</label>
+                                            <input type="date" name="dateStart" class="form-control" id="currentDate">
                                         </div>
                                     </div>
                                     <div class="col-6">
                                         <div class="result">
-                                            <label for="selectedDate">Selected Date:</label>
-                                            <input type="text" name="dateEnd" class="form-control" id="selectedDate" readonly>
+                                            <label for="selectedDate">Date To:</label>
+                                            <input type="date" name="dateEnd" class="form-control" id="selectedDate">
                                         </div>
                                     </div>
                                 </div>
