@@ -69,7 +69,11 @@ require "dbconnection.php";
                             <hr>
 
                             <strong><i class="fas fa-map-marker-alt mr-1"></i> Employee Status</strong>
-                            <span class="tag tag-primary"><?php echo $row->empstatus; ?></span>
+                            <p class="tag tag-primary"><?php echo $row->empstatus; ?></p>
+                            <hr>
+
+                            <strong><i class="fas fa-money-bill-alt mr-1"></i> Salary</strong>
+                            <h4 class="tag tag-primary"><?php echo $row->salary; ?></h4>
                             <hr>
 
                             <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
@@ -82,7 +86,7 @@ require "dbconnection.php";
 
                             <strong><i class="fas fa-envelope mr-1"></i> Mail</strong>
                             <p class="text-muted">
-                                <span class="tag tag-primary"><?php echo $row->email; ?></span>
+                                <p class="tag tag-primary"><?php echo $row->email; ?></p>
                             </p>
                             <hr>
 
