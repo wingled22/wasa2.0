@@ -33,144 +33,118 @@ include_once "~/../php-includes/header.php";
                         <!-- /.card-header -->
                         <!-- form start -->
                         <form action="employee-absent-add.php" method="POST">
-                            <div class="card-body" style="">
+    <div class="card-body">
 
-                                <input type="text" style="display:none" name="empID" value="<?php echo $_GET['id'] ?>" required>
+        <!-- Input for Employee ID (I kept it hidden as in your original code) -->
+        <input type="text" style="display:none" name="empID" value="<?php echo $_GET['id'] ?>" required>
 
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Reason</label>
-                                            <input type="text" class="form-control" id="" placeholder="Reason"
-                                                name="reason" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Type</label>
-                                            <select class="form-control" id="" placeholder="Type of Absent" required
-                                                name="type">
-                                                <option value="With Pay">With Pay</option>
-                                                <option value="With Out Pay">With Out Pay</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="form-group">
-                                            <label for="dateInput">Date Applied:</label>
-                                            <input type="date" class="form-control" id="dateInput" oninput="showTimeOption()">
-                                        </div>
-                                    </div>
-                                    <div class="col-6" id="timeOptionContainer" style="display:none;">
-                                        <div class="form-group">
-                                            <label for="timeOption">Select time option:</label>
-                                            <select class="form-control" id="timeOption" name="timeOption">
-                                                <!-- <option value=""></option> -->
-                                                <option value="fullDay">Full Day</option>
-                                                <option value="halfDay">Half Day</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="result">
-                                            <label for="currentDate">Date From:</label>
-                                            <input type="date" name="dateStart" class="form-control" id="currentDate">
-                                        </div>
-                                    </div>
-                                    <div class="col-6">
-                                        <div class="result">
-                                            <label for="selectedDate">Date To:</label>
-                                            <input type="date" name="dateEnd" class="form-control" id="selectedDate">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-6">
-                                        <div class="result">
-                                            <label for="daysDifference">Number of Days:</label>
-                                            <input type="text" name="days" class="form-control" id="daysDifference" readonly>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div><!-- /.card-body -->
-
-                            <div class="card-footer">
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                                <a href="employee-profile.php?id=<?php echo $_GET['id']; ?>"
-                                    class="btn btn-danger">Back</a>
-                            </div>
-                        </form>
-                    </div>
+        <!-- Reason and Type inputs -->
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Reason</label>
+                    <input type="text" class="form-control" id="" placeholder="Reason" name="reason" required>
                 </div>
             </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Type</label>
+                    <select class="form-control" id="" placeholder="Type of Absent" required name="type">
+                        <option value="With Pay">With Pay</option>
+                        <option value="With Out Pay">With Out Pay</option>
+                    </select>
+                </div>
+            </div>
+        </div>
 
-        </div><!-- /.container-fluid -->
+        <!-- Date inputs and time option container -->
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label for="dateInput">Date Applied:</label>
+                    <input type="date" class="form-control"  name="dateapplied" required >
+                </div>
+            </div>
+            <div class="col-6" id="timeOptionContainer" style="display:none;">
+                <div class="form-group">
+                    <label for="timeOption">Select time option:</label>
+                    <select class="form-control" id="timeOption" name="timeOption">
+                        <option value="fullDay">Full Day</option>
+                        <option value="halfDay">Half Day</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Date range inputs and days difference -->
+        <div class="row">
+            <div class="col-6">
+                <div class="result">
+                    <label for="currentDate">Date From:</label>
+                    <input type="date" name="dateStart" class="form-control" id="currentDate" >
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="result">
+                    <label for="selectedDate">Date To:</label>
+                    <input type="date" name="dateEnd" class="form-control" id="dateInput" onchange="showTimeOption()" >
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <div class="result">
+                    <label for="daysDifference">Number of Days:</label>
+                    <input type="text" name="days" class="form-control" id="daysDifference" readonly>
+                </div>
+            </div>
+        </div>
+
     </div>
- 
 
-</div>
+    <!-- Submit and Back buttons -->
+    <div class="card-footer">
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <a href="employee-profile.php?id=<?php echo $_GET['id']; ?>" class="btn btn-danger">Back</a>
+    </div>
+</form>
 
+<!-- JavaScript code -->
 <script>
     function showTimeOption() {
-        // Get the selected date from the input
         var selectedDate = new Date(document.getElementById('dateInput').value);
+        var today = new Date();
 
-        // Get today's date as a string
-        var todayString = new Date().toDateString();
-
-        // Check if a valid date is selected and if it's the current date
-        if (!isNaN(selectedDate.getTime()) && selectedDate.toDateString() === todayString) {
-            // Show the time option container
+        if (!isNaN(selectedDate.getTime()) && selectedDate.toDateString() === today.toDateString()) {
             document.getElementById('timeOptionContainer').style.display = 'block';
         } else {
-            // Hide the time option container
             document.getElementById('timeOptionContainer').style.display = 'none';
         }
 
-        // Calculate and display the current date, selected date, and result
-        calculateDays();
+        calculateDays(today, selectedDate);
     }
 
-    function calculateDays() {
-        // Get the selected date from the input
-        var selectedDate = new Date(document.getElementById('dateInput').value);
 
-        // Get today's date
-        var today = new Date();
 
-        // Calculate the difference in milliseconds
+    function calculateDays(today, selectedDate) {
         var timeDiff = selectedDate - today;
-
-        // Convert the difference to days
         var daysDiff = Math.ceil(timeDiff / (1000 * 60 * 60 * 24));
 
-        // Get the selected time option
-        var timeOption = document.getElementById('timeOption').value;   
+        var timeOption = document.getElementById('timeOption').value;
 
-        // Adjust the days difference based on the time option if the selected date is the current date
         if (timeOption === 'halfDay' && selectedDate.toDateString() === today.toDateString()) {
             daysDiff = 0.5;
         } else if (timeOption === 'fullDay' && selectedDate.toDateString() === today.toDateString()) {
             daysDiff = 1;
         }
 
-        // Display the current date, selected date, and result
-        document.getElementById('currentDate').value = today.toDateString();
-        document.getElementById('selectedDate').value = selectedDate.toDateString();
+        document.getElementById('currentDate').value = today.toISOString().split('T')[0];
+        document.getElementById('dateInput').value = selectedDate.toISOString().split('T')[0];
         document.getElementById('daysDifference').value = daysDiff;
     }
-   
 
-   
+    // Call showTimeOption on page load
     showTimeOption();
 </script>
-
 

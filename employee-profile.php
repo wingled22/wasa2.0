@@ -242,9 +242,9 @@ require "dbconnection.php";
                             <table class="table table-striped table-valign-middle">
                                 <thead>
                                     <tr>
-                                        <th>Date Start</th>
-                                        <th>Date End</th>
                                         <th>Date Applied</th>
+                                        <th>Date From</th>
+                                        <th>Date To</th>
                                         <th>Reason</th>
                                         <th>Duty Time</th>
                                         <th>Days</th>
@@ -263,9 +263,9 @@ require "dbconnection.php";
                                         while ($row = mysqli_fetch_object($res)) {
                                     ?>
                                         <tr>
+                                            <td><?php echo $row->dateapplied; ?></td>
                                             <td><?php echo $row->datestart; ?></td>
                                             <td><?php echo $row->dateEnd; ?></td>
-                                            <td><?php echo $row->dateapplied; ?></td>
                                             <td><?php echo $row->reason; ?></td>
                                             <td><?php echo $row->daystatus; ?></td>
                                             <td><?php echo $row->numday; ?></td>
