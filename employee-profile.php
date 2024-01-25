@@ -58,6 +58,7 @@ require "dbconnection.php";
                                 $res = $conn->query($sqlQuery);
                                 $row = $res->fetch_object();
                                 $idNum = $row->idnum;
+                                $salary = $row->salary;
                             ?>
 
                             <div class="alb">
@@ -289,6 +290,7 @@ require "dbconnection.php";
                                         <th>Id</th>
                                         <th>Category</th>
                                         <th>Name</th>
+                                        <th>Increase</th>
                                         <th>More</th>
                                     </tr>
                                 </thead>
@@ -302,14 +304,17 @@ require "dbconnection.php";
                                         if (!$res) {
                                             echo "no data on the table";
                                         }
+                                        $sumSalary = 0;
                                         while ($row = mysqli_fetch_object($res)) {
+                                            $sumSalary += $row-> salary;
                                     ?>
                                         <tr>
                                             <td><?php echo $row->id; ?></td>
                                             <td><?php echo $row->category; ?></td>
                                             <td><?php echo $row->name; ?></td>
+                                            <td><?php echo $row->salary; ?></td>
                                             <td>
-                                                <a href="employee-salary-adjustment-delete.php?id=<?php echo $row->id?>" class="btn btn-danger">Delete</a>
+                                                <a href="employee-salary-adjustment-delete.php?empid=<?php echo $empID; ?>&id=<?php echo $row->id;?>" class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
                                     <?php
@@ -318,6 +323,12 @@ require "dbconnection.php";
 
                                 </tbody>
                             </table>
+                        </div>
+                        <div class="card-footer p-3">
+                            <h5> Salary: <?php echo $salary; ?> </h5>
+                            <h5> Salary Adujstments: <?php echo $sumSalary; ?> </h5>
+                            <h5> Total: <?php echo $sumSalary + $salary; ?> </h5>
+
                         </div>
                     </div>
 
