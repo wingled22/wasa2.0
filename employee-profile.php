@@ -58,6 +58,7 @@ require "dbconnection.php";
                                 $res = $conn->query($sqlQuery);
                                 $row = $res->fetch_object();
                                 $idNum = $row->idnum;
+                                $salary = $row->salary;
                             ?>
 
                             <div class="alb">
@@ -68,7 +69,11 @@ require "dbconnection.php";
                             <hr>
 
                             <strong><i class="fas fa-map-marker-alt mr-1"></i> Employee Status</strong>
-                            <span class="tag tag-primary"><?php echo $row->empstatus; ?></span>
+                            <p class="tag tag-primary"><?php echo $row->empstatus; ?></p>
+                            <hr>
+
+                            <strong><i class="fas fa-money-bill-alt mr-1"></i> Salary</strong>
+                            <h4 class="tag tag-primary"><?php echo $row->salary; ?></h4>
                             <hr>
 
                             <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
@@ -81,7 +86,7 @@ require "dbconnection.php";
 
                             <strong><i class="fas fa-envelope mr-1"></i> Mail</strong>
                             <p class="text-muted">
-                                <span class="tag tag-primary"><?php echo $row->email; ?></span>
+                                <p class="tag tag-primary"><?php echo $row->email; ?></p>
                             </p>
                             <hr>
 
@@ -266,7 +271,7 @@ require "dbconnection.php";
                                             <td><?php echo $row->numday; ?></td>
                                             <td><?php echo $row->status; ?></td>
                                             <td>
-                                                <a href="employee-absent-update-form.php?empid=<?php echo $_GET['id']?>&id=<?php echo $row->id?>" class="btn btn-success">Update</a>
+                                                <!-- <a href="employee-absent-update-form.php?empid=<?php echo $_GET['id']?>&id=<?php echo $row->id?>" class="btn btn-success">Update</a> -->
                                                 <a href="employee-absent-delete.php?empid=<?php echo $_GET['id']?>&id=<?php echo $row->id?>" class="btn btn-danger">Delete</a>
                                             </td>
                                         </tr>
@@ -277,6 +282,62 @@ require "dbconnection.php";
                             </table>
                         </div>
                     </div>
+
+                    <div class="card">
+                        <div class="card-body">
+                            <h5>Salary Adjustments</h5>
+                            <hr>
+                            <a href="employee-salary-adjustment-add-form.php?id=<?php echo $empID;?>" class="btn btn-primary">Add Salary Adjustment</a>
+                           
+                             <br>
+                            <table class="table table-striped table-valign-middle">
+                                <thead>
+                                    <tr>
+                                        <th>Id</th>
+                                        <th>Category</th>
+                                        <th>Name</th>
+                                        <th>Increase</th>
+                                        <th>More</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        require "dbconnection.php";
+                                        $sql = "SELECT adj.id, adj.adjustmentId, str.category, str.name, str.salary, adj.empId FROM salaryadjustment as adj
+                                                inner join salarystructure as str on adj.adjustmentId = str.id
+                                                where adj.empId = $empID;";
+                                        $res = $conn->query($sql);
+                                        if (!$res) {
+                                            echo "no data on the table";
+                                        }
+                                        $sumSalary = 0;
+                                        while ($row = mysqli_fetch_object($res)) {
+                                            $sumSalary += $row-> salary;
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $row->id; ?></td>
+                                            <td><?php echo $row->category; ?></td>
+                                            <td><?php echo $row->name; ?></td>
+                                            <td><?php echo $row->salary; ?></td>
+                                            <td>
+                                                <a href="employee-salary-adjustment-delete.php?empid=<?php echo $empID; ?>&id=<?php echo $row->id;?>" class="btn btn-danger">Delete</a>
+                                            </td>
+                                        </tr>
+                                    <?php
+                                        }
+                                    ?>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="card-footer p-3">
+                            <h5> Salary: <?php echo $salary; ?> </h5>
+                            <h5> Salary Adujstments: <?php echo $sumSalary; ?> </h5>
+                            <h5> Total: <?php echo $sumSalary + $salary; ?> </h5>
+
+                        </div>
+                    </div>
+
 
                     
                 </div>
