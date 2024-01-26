@@ -109,42 +109,70 @@ include_once "~/../php-includes/header.php";
                                 <a href="employee-profile.php?id=<?php echo $_GET['id']; ?>" class="btn btn-danger">Back</a>
                             </div>
                         </form>
-
-                        <!-- JavaScript code -->
-                        <script>
-                            function calculateDateDifference() {
-                                // Get input values from the user
-                                var dateFromStr = document.getElementById("dateFrom").value;
-                                var dateToStr = document.getElementById("dateTo").value;
-
-                                // Convert input strings to Date objects
-                                var dateFrom = new Date(dateFromStr);
-                                var dateTo = new Date(dateToStr);
-
-                                // Check if both dates are valid
-                                if (isNaN(dateFrom) || isNaN(dateTo)) {
-                                    document.getElementById("result").value = "";
-                                    return;
-                                }
-
-                                // Calculate the difference between the two dates in milliseconds
-                                var dateDifferenceMs = dateTo - dateFrom;
-
-                                // Convert the difference to days
-                                var dateDifferenceDays = dateDifferenceMs / (1000 * 60 * 60 * 24);
-
-                                // Display the result
-                                document.getElementById("result").value = "" + dateDifferenceDays;
-
-                                // Show time option container based on conditions
-                                // showTimeOption(dateFrom);
-                            }
-
-                            
-                        </script>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+                     <!-- JavaScript code -->
+ <script>
+            function calculateDateDifference() {
+                // Get input values from the user
+                var dateFromStr = document.getElementById("dateFrom").value;
+                var dateToStr = document.getElementById("dateTo").value;
+
+                // Convert input strings to Date objects
+                var dateFrom = new Date(dateFromStr);
+                var dateTo = new Date(dateToStr);
+
+                // Check if both dates are valid
+                if (isNaN(dateFrom) || isNaN(dateTo)) {
+                    document.getElementById("result").value = "";
+                    return;
+                }
+
+                // Calculate the difference between the two dates in milliseconds
+                var dateDifferenceMs = dateTo - dateFrom;
+
+                // Convert the difference to days
+                var dateDifferenceDays = dateDifferenceMs / (1000 * 60 * 60 * 24);
+
+                // Display the result
+                document.getElementById("result").value = "" + dateDifferenceDays;
+
+                // Show time option container and set its value based on conditions
+                showTimeOption(dateFrom, dateTo, dateDifferenceDays);
+            }
+
+            function showTimeOption(dateFrom, dateTo, dateDifferenceDays) {
+                // Check if the selected date range is the same
+                var isSameDate = dateFrom.toDateString() === dateTo.toDateString();
+
+                // Get the time option container and the time option element
+                var timeOptionContainer = document.getElementById("timeOptionContainer");
+                var timeOptionElement = document.getElementById("timeOption");
+
+                // Display the time option container if the date range is the same, otherwise hide it
+                timeOptionContainer.style.display = isSameDate ? "block" : "none";
+
+                // Set the value for the time option based on conditions
+                if (isSameDate) {
+                    // If it's the same date, set the default value to "fullDay"
+                    timeOptionElement.value = "fullDay";
+
+                    // Update the number of days based on the selected time option
+                    timeOptionElement.addEventListener("change", function() {
+                        var selectedTimeOption = timeOptionElement.value;
+                        if (selectedTimeOption === "fullDay") {
+                            document.getElementById("result").value = "1";
+                        } else if (selectedTimeOption === "halfDay") {
+                            document.getElementById("result").value = "0.5";
+                        }
+                    });
+                }
+            }
+</script>
+
+
+ 
