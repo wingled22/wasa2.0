@@ -33,6 +33,8 @@
     <div class="content">
       <div class="container-fluid">
         <!-- content goes here -->
+
+        
         
         <div class="row">
           <div class="col-md-9">
@@ -47,7 +49,28 @@
                   <div class="card-body" style="height: 85vh; overflow: scroll;">
 
                     <input type="text" style="display:none" name="id" value="<?php echo $row['id']?>" required >
+
+                    <legend>Employee Status</legend>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-group">
+                                <select class="form-control" name="empstatus" required>
+                                    <option value="Probationary">Probationary</option>
+                                    <option value="Regular">Regular</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                          <div class="form-group ">
+                            <input type="number" class="form-control" id="" placeholder="Salary" 
+                                required name="salary" value="<?php echo $row['salary']?>"  >
+                          </div>
+                        </div>
+                    </div>
+                    <hr>
+
                     <legend>Personal information</legend>
+
                     <div class="row">
                       
                     <div class="col-4">

@@ -92,7 +92,7 @@
               <a href="wasa.php" class="nav-link">
                 <i class="nav-icon fas fa-money-bill"></i>
                 <p>
-                  WASA
+                  Salary Adjustments
                 </p>
               </a>
             </li>

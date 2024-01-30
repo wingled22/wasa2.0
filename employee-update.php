@@ -8,7 +8,7 @@
     // var_dump($_POST);
 
     $id = $_POST['id'];
-
+   
     $firstname = $_POST["firstname"];
     $middlename = $_POST["middlename"];
     $lastname = $_POST["lastname"];
@@ -31,6 +31,9 @@
     $emercontact = $_POST["emercontact"];
     $emerrelation = $_POST["emerrelation"];
     $emeraddress = $_POST["emeraddress"];
+    $empstatus = $_POST["empstatus"];
+    $salary = $_POST["salary"];
+
 
 
     $sql = "UPDATE employee SET
@@ -55,7 +58,10 @@
         emername = '$emername' ,
         emercontact = '$emercontact' ,
         emerrelation = '$emerrelation' ,
-        emeraddress = '$emeraddress' 
+        emeraddress = '$emeraddress' ,
+        empstatus = '$empstatus',
+        salary = '$salary'
+
     where id = $id ";
     echo "<br>";
     $res  = $conn->query($sql);
